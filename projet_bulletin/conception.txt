@@ -1,0 +1,107 @@
+MINI-PROJET : BULLETIN DE NOTES D'UN ETUDIANT
+Auteur : Lydie Ouattara - Date : 29/10/2026
+Version de Python : Python 3.11.1 (python --version)
+
+=====================================================
+PHASE 1 - ANALYSE DU PROBLEME
+=====================================================
+
+1.1 Décomposition en sous-problèmes
+  1. Demander et lire le nom de l'étudiant.
+  2. Demander et lire les trois notes (et les convertir en nombres).
+  3. Définir les coefficients de chaque matière.
+  4. Calculer la somme des notes multipliées par leur coefficient.
+  5. Calculer la somme des coefficients, puis la moyenne pondérée.
+  6. Décider Admis / Ajourné (conçu, pas programmé).
+  7. Afficher le bulletin.
+
+1.2 Motif répétitif
+  Le calcul "note x coefficient" est répété trois fois (une fois par matière),
+  puis les trois résultats sont additionnés. La saisie d'une note
+  (question, lecture, conversion en nombre) est aussi répétée trois fois.
+
+1.3 Abstraction
+  Entrées     : nom de l'étudiant, note d'Algorithmique, note de Python,
+                note de Méthodologie (les coefficients sont fixes).
+  Traitement  : note x coefficient pour chaque matière, somme pondérée,
+                somme des coefficients, division, comparaison à 10.
+  Sorties     : bulletin (nom, notes + coefficients, moyenne pondérée)
+                et, à terme, la décision Admis / Ajourné.
+  Informations inutiles pour ce programme : la date de naissance de l'étudiant
+  et sa couleur préférée (aussi : son adresse, sa taille...).
+
+1.4 Algorithme
+  En langage naturel :
+    - Je demande le nom de l'étudiant.
+    - Je demande les trois notes sur 20.
+    - Je multiplie chaque note par son coefficient et j'additionne.
+    - Je divise cette somme par la somme des coefficients (6).
+    - Si la moyenne est supérieure ou égale à 10, l'étudiant est Admis,
+      sinon il est Ajourné.
+    - J'affiche le bulletin et la décision.
+
+  Pseudocode :
+    DEBUT
+      coef_algo <- 2
+      coef_python <- 3
+      coef_methodo <- 1
+      LIRE nom_etudiant
+      LIRE note_algo
+      LIRE note_python
+      LIRE note_methodo
+      somme_ponderee <- note_algo*coef_algo + note_python*coef_python
+                        + note_methodo*coef_methodo
+      somme_coef <- coef_algo + coef_python + coef_methodo
+      moyenne <- somme_ponderee / somme_coef
+      AFFICHER le bulletin (nom, notes avec coefficients, moyenne)
+      SI moyenne >= 10 ALORS
+        AFFICHER "Admis"
+      SINON
+        AFFICHER "Ajourné"
+      FIN SI
+    FIN
+
+1.5 Logigramme : voir le fichier logigramme.png
+
+=====================================================
+PHASE 2 - METHODE DE DEVELOPPEMENT
+=====================================================
+
+2.1 Itérations
+  v1 - Objectif : lire un nom et une note, afficher la note multipliée par son
+       coefficient.
+       Terminée quand : pour la note 12 et le coefficient 3, le programme affiche 36.0.
+  v2 - Objectif : lire les trois notes et afficher la moyenne pondérée.
+       Terminée quand : pour 15, 12 et 9, le programme affiche 12.5.
+  v3 - Objectif : afficher un bulletin complet et lisible avec des f-strings.
+       Terminée quand : l'affichage correspond à l'exemple d'exécution du sujet.
+
+2.2 Pourquoi l'agile
+  Le projet est petit et se construit naturellement par petites versions que
+  l'on peut tester tout de suite. Avec l'agile, on obtient très vite un
+  programme qui marche (v1), puis on l'enrichit et on corrige les erreurs à
+  chaque étape. En cascade, il faudrait tout concevoir avant de coder et on
+  découvrirait les erreurs tard. De plus, la suite du projet (décision
+  Admis / Ajourné) viendra plus tard : l'agile accepte facilement ces ajouts.
+
+2.3 Besoins futurs pour une classe entière
+  - Recherche : retrouver rapidement le bulletin d'un étudiant à partir de son nom.
+  - Tri : classer les étudiants par moyenne décroissante pour établir le classement.
+  - Opérations sur les listes : stocker les notes de la classe dans une liste,
+    ajouter ou supprimer un étudiant, calculer la moyenne de la classe.
+
+=====================================================
+PHASE 6 - BILAN PERSONNEL
+=====================================================
+
+Plus grande difficulté : écrire correctement la formule de la moyenne
+pondérée et ne pas oublier les conversions avec float(). Je l'ai résolue en
+testant avec des valeurs simples et en lisant le message d'erreur depuis la
+dernière ligne.
+
+Ce que j'ai mieux compris : la différence entre le texte renvoyé par input()
+et un nombre, l'intérêt des variables aux noms explicites pour les
+coefficients, et le travail par petites itérations.
+
+À revoir avant la prochaine séance : les conditions (if / else), pour
+programmer la décision Admis / Ajourné, et la lecture des logigrammes.

@@ -1,0 +1,34 @@
+PHASE 5 - TESTS ET DEBOGAGE
+
+5.1 Erreur provoquée
+  Modification : dans bulletin_v2.py, le float() autour de la saisie de la note
+  de Python a été retiré : note_python = input("Note de Python (/20) : ")
+
+  Message obtenu :
+    Traceback (most recent call last):
+      File "bulletin_v2.py", line 18, in <module>
+        somme_ponderee = note_algo * coef_algo + note_python * coef_python + note_methodo * coef_methodo
+                         ~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+    TypeError: unsupported operand type(s) for +: 'float' and 'str'
+
+  Type d'erreur : TypeError (opération entre types incompatibles).
+  Cause : input() renvoie toujours du texte (str). note_python * coef_python
+          donne donc une chaîne répétée 3 fois, et on ne peut pas additionner
+          un nombre (float) et une chaîne (str).
+  Correction : convertir la saisie avec float() :
+          note_python = float(input("Note de Python (/20) : "))
+  Le code correct a ensuite été remis dans bulletin_v2.py.
+
+5.2 Jeux d'essai (moyenne = (2 x Algo + 3 x Python + 1 x Methodo) / 6)
+
+| N° | Notes saisies (Algo / Python / Methodo) | Résultat attendu (à la main)   | Résultat obtenu | Conforme ? |
+|----|------------------------------------------|--------------------------------|-----------------|------------|
+| 1  | 15 / 12 / 9                              | (30+36+9)/6 = 75/6 = 12.5      | 12.5            | Oui        |
+| 2  | 0 / 0 / 0 (valeurs extrêmes)             | 0/6 = 0.0                      | 0.0             | Oui        |
+| 3  | 20 / 20 / 20 (valeurs extrêmes)          | (40+60+20)/6 = 120/6 = 20.0    | 20.0            | Oui        |
+| 4  | 8 / 14 / 11 (essai supplémentaire)       | (16+42+11)/6 = 69/6 = 11.5     | 11.5            | Oui        |
+
+5.3 Corrections
+  Aucun écart constaté entre les résultats attendus et obtenus : aucune
+  correction n'a été nécessaire sur la formule. La seule erreur rencontrée
+  est celle provoquée volontairement en 5.1 (oubli de float()), corrigée.
